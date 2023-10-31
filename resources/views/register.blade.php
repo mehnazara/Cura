@@ -21,7 +21,7 @@ style="background-color:#ccec6dac;
 margin:15px;
 padding:20px;
 border-radius:20px;
-box-shadow:10px 10px rgb(17, 33, 2);">
+box-shadow:10px 10px rgba(71, 114, 31, 0.566);">
     @csrf 
     <div class="form-group">
         <label for="name">Patient Name</label>

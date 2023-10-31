@@ -11,10 +11,16 @@ use App\Models\Patient;
 class AuthManager extends Controller
 {
     function register(){
+        if(Auth::check()){
+            return redirect(route('home'));
+        }
         return view('register');
     }
 
     function login(){
+        if(Auth::check()){
+            return redirect(route('home'));
+        }
         return view('login');
     }
 
