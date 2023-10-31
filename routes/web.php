@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\PatientDashboard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,4 @@ Route::post('/login', [AuthManager::class, 'loginpost'])->name('login.post');
 Route::get('/register', [AuthManager::class, 'register'])->name('register');
 Route::post('/register', [AuthManager::class, 'registerpost'])->name('register.post');
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
+Route::get('/patientprofile', [PatientDashboard::class, 'profile'])->name('patientprofile');

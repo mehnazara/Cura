@@ -2,7 +2,20 @@
 @section('title','Login')
 
 @section('content')
-<form action="{{route('login.post')}}" method="POST" 
+<div class="row" style="justify-content: center">
+  <div class="box" 
+  style="background-color: rgba(131, 105, 66, 0.285);
+  margin:20px;
+  border-radius:20px">
+    <img src="{{URL::asset('/images/logo.png')}}" class="img-fluid" alt="Responsive image" 
+  style="height:130px; padding:10px">
+
+  </div>
+  
+</div>
+<div class="row" style="justify-content: center">
+  <div class="col-5">
+    <form action="{{route('login.post')}}" method="POST" 
 style="background-color:#8a9a5b; 
 margin:15px;
 padding:20px;
@@ -33,4 +46,7 @@ box-shadow:10px 10px rgb(17, 33, 2);">
         <button type="submit" class="btn btn-success shadow">Submit</button>
     </div>
   </form>
+  </div>
+</div>
+
 @endsection

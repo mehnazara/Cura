@@ -2,7 +2,20 @@
 @section('title','Register')
 
 @section('content')
-<form
+<div class="row" style="justify-content: center">
+  <div class="box" 
+  style="background-color: rgba(131, 105, 66, 0.285);
+  margin:20px;
+  border-radius:20px">
+    <img src="{{URL::asset('/images/logo.png')}}" class="img-fluid" alt="Responsive image" 
+  style="height:130px; padding:10px">
+
+  </div>
+  
+</div>
+<div class="row" style="justify-content: center">
+  <div class="col-5">
+    <form
 action="{{route('register.post')}}" method="POST"
 style="background-color:#ccec6dac; 
 margin:15px;
@@ -68,8 +81,14 @@ box-shadow:10px 10px rgb(17, 33, 2);">
         </select>
     </div>
     <div class="text-center">
+        <div class="box shadow mb-2" style="border-radius: 80px;" >
+          <a class="nav-link text-dark" href="{{url('/login')}}" >Already have an account? Login.</a>
+        </div>
         <button type="submit" class="btn btn-success shadow">Submit</button>
     </div>
   </form>
+  </div>
+</div>
+
 @endsection
     

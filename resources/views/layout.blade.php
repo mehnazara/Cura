@@ -9,8 +9,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
   </head>
-  <body style="background-color: #013220">
+  <body style="background-image: url('/images/road.png');
+  background-repeat: no-repeat;
+  background-size: cover;">
     <div class="container-fluid">
+      
       @if(session()->has('error'))
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{session('error')}}
@@ -27,23 +30,8 @@
         </button>
       </div>
       @endif
-      
-      <div class="row" style="justify-content: center">
-        <div class="box" 
-        style="background-color: rgba(131, 105, 66, 0.285);
-        margin:20px;
-        border-radius:20px">
-          <img src="{{URL::asset('/images/logo.png')}}" class="img-fluid" alt="Responsive image" 
-        style="height:130px; padding:10px">
-
-        </div>
-        
-      </div>
-      <div class="row" style="justify-content: center">
-        <div class="col-5">
-          @yield('content')
-        </div>
-      </div>
+      @include('components.header')
+      @yield('content')
 
 
         
