@@ -34,7 +34,10 @@ box-shadow:10px 10px rgba(64, 103, 28, 0.542);">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
+        <a class="float-right" style="color: rgb(8, 44, 6)" href="{{route('password.forgot')}}">Forgot Password?</a>
+      
       <input type="password" class="form-control shadow" name="password" placeholder="Password" value="{{old('password')}}">
+      
       <span style="font-weight: bolder;
       color:rgb(102, 4, 4)">
         @error('password')
@@ -43,6 +46,9 @@ box-shadow:10px 10px rgba(64, 103, 28, 0.542);">
       </span>
     </div>
     <div class="text-center">
+      <div class="box shadow mt-2 mb-2" style="border-radius: 80px;" >
+        <a class="nav-link text-dark" href="{{url('/register')}}" >New user? Register here.</a>
+      </div>
         <button type="submit" class="btn btn-success shadow">Submit</button>
     </div>
   </form>

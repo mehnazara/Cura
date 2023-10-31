@@ -18,7 +18,7 @@
     <form
 action="{{route('register.post')}}" method="POST"
 style="background-color:#ccec6dac; 
-margin:15px;
+margin:35px;
 padding:20px;
 border-radius:20px;
 box-shadow:10px 10px rgba(71, 114, 31, 0.566);">
