@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('patients', function (Blueprint $table) {
+            $table->id('patient_id');
             $table->string('name');
+            $table->char('phone',11)->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->date('birthdate');
+            $table->enum('gender', ['male', 'female']);
+            //$table->rememberToken();
             $table->timestamps();
         });
     }
