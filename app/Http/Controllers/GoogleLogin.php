@@ -16,17 +16,28 @@ class GoogleLogin extends Controller
     }
 
     function callbackfromGoogle(){
+
+        try {
             $user = Socialite::driver('google')->user();
 
-            
-            $saveUser = Patient::where('email',$user->getEmail())->first();
-            print_r($saveUser);
-            Auth::loginUsingId($saveUser->id);
-            if(Auth::check()){
-                return redirect(route('home'))->with('success','Login successful!');
-            } else {
-                return redirect(route('login'))->with('error','Failed to login');
-            }
+            $new_user = Patient::create([
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'password' => Hash::make($user->getName()),
+                    'google_id' => $user->getId(),
+                ]);
+
+                $credentials = array('email' => $new_user->email, 'password' => $new_user->name);
+
+                if(Auth::attempt($credentials)){
+                    return redirect(route('home'))->with('success', 'Login successful!');
+                }
+
+                return $credentials;
+
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
         }
     
 }
