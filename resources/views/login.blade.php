@@ -45,10 +45,15 @@ box-shadow:10px 10px rgba(64, 103, 28, 0.542);">
         @enderror
       </span>
     </div>
-    <div class="text-center">
-      <div class="box shadow mt-2 mb-2" style="border-radius: 80px;" >
-        <a class="nav-link text-dark" href="{{url('/register')}}" >New user? Register here.</a>
+    <div class="text-center text-danger">
+      <div class="box shadow mt-2 mb-2" style="border-radius: 80px; background-color:#f5f0ca91" >
+        <a class="nav-link text-dark" style="font-weight:bolder" href="{{url('/auth-google')}}" >Login with Gmail.</a>
       </div>
+      <div class="box shadow mt-2 mb-2" style="border-radius: 80px; background-color:#9c977591" >
+        <a class="nav-link text-dark" style="font-weight:bolder" href="{{url('/register')}}" >New user? Register here.</a>
+      </div>
+    </div>
+    <div class="text-center">
         <button type="submit" class="btn btn-success shadow">Submit</button>
     </div>
   </form>

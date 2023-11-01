@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\PatientDashboard;
 use App\Http\Controllers\Password;
+use App\Http\Controllers\GoogleLogin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,5 @@ Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('passw
 Route::post('/forgot-password', [Password::class, 'forgotpasswordpost'])->name('password.forgot.post');
 Route::get('/reset-password/{token}', [Password::class, 'resetpassword'])->name('password.reset');
 Route::post('/reset-password', [Password::class, 'resetpasswordpost'])->name('password.reset.post');
+Route::get('/auth-google', [GoogleLogin::class, 'googlelogin'])->name('login.google');
+Route::any('/auth/google/home', [GoogleLogin::class, 'callbackfromGoogle'])->name('google.callback');

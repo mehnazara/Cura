@@ -16,7 +16,8 @@ class Patient extends Model
         'email',
         'password',
         'birthdate',
-        'gender'
+        'gender',
+        'google_id'
     ];
     
 }
