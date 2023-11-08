@@ -26,7 +26,7 @@ Route::post('/register', [AuthManager::class, 'registerpost'])->name('register.p
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/patientprofile', [PatientDashboard::class, 'profile'])->name('patientprofile');
-
+    Route::post('/patientprofile', [PatientDashboard::class,'updateProfile'])->name('profile.update');
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');

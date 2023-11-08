@@ -32,8 +32,7 @@ class AuthManager extends Controller
 
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-            return $credentials;
-            //return redirect(route('home'))->with('success', 'Login successful!');
+            return redirect(route('home'))->with('success', 'Login successful!');
         }
         return redirect(route('login'))->with('error', 'Login details are not valid!');
     }

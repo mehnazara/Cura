@@ -20,6 +20,9 @@ class GoogleLogin extends Controller
         try {
             $user = Socialite::driver('google')->user();
 
+            $old_user = Patient::where('google_id', $user->getId())->first();
+            
+            if (!$old_user){
             $new_user = Patient::create([
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
@@ -34,7 +37,15 @@ class GoogleLogin extends Controller
                 }
 
                 return $credentials;
+            } else {
 
+                $credentials = array('email' => $old_user->email, 'password' => $old_user->name);
+
+                if(Auth::attempt($credentials)){
+                    return redirect(route('home'))->with('success', 'Login successful!');
+                }
+
+            }
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
