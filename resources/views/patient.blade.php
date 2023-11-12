@@ -131,7 +131,8 @@
 
                     <!-- Button to View Assigned Nurse -->
                     <div class="row" style="justify-content: center">
-                        <a href="#" class="btn btn-success">View Assigned Nurse</a>
+                        <a href="#" class="btn" style="background-color: rgb(24, 84, 8); 
+                        color:antiquewhite;font-weight:bold;">View Assigned Nurse</a>
 
                     </div>
                     
@@ -140,7 +141,8 @@
 
                     <!-- Button to View Due Balance -->
                     <div class="row" style="justify-content: center">
-                        <a href="#" class="btn btn-success">View Due Balance</a>
+                        <a href="#" class="btn" style="background-color: rgb(24, 84, 8); 
+                        color:antiquewhite;font-weight:bold;">View Due Balance</a>
 
                     </div>
                     
