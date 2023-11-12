@@ -12,22 +12,35 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 mt-3">
                             <h5>Name - {{auth()->user()->name}}</h5>
                         </div>
                         
-                        <div class="col-6">
-                            <form class="float-right" method="post">
+                        @if(auth()->user()->profilePicture == '')
+                        <div class="col-6 text-center">
+                            <form action="{{route('profile.update')}}" class="float-right" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <label for="picture">Upload Profile Picture:</label>
                                 <input type="file" name="picture" id="picture">
-                                <div class="div text-center">
+                                <div class="div">
                                     <button type="submit" class="btn btn-success">Upload</button>
                                 </div>
                                 
                             </form>
 
                         </div>
+                        @else
+                        <div class="col-6 text-center">
+                            <div class="row" style="justify-content: center">
+                                <img src="{{URL::asset("uploads/".auth()->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
+
+                            </div>
+                            <div class="row mt-2" style="justify-content: center">
+                                <a href="{{route('patient.image')}}" class="btn btn-success">Change Image</a>
+                            </div>
+
+                        </div>
+                        @endif
                     
 
                     </div>
@@ -38,12 +51,12 @@
                             <h5>Email - {{auth()->user()->email}}</h5>
                         </div>
                         
-                        <div class="col-6">
-                            <form class="float-right" method="post">
+                        <div class="col-6 text-center">
+                            <form action="{{route('profile.update')}}" class="float-right" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <label for="picture">Upload Medical Report:</label>
+                                <label for="report">Upload Medical Report:</label>
                                 <input type="file" name="report">
-                                <div class="div text-center">
+                                <div class="div">
                                     <button type="submit" class="btn btn-success">Upload</button>
                                 </div>
                                 
@@ -64,9 +77,8 @@
                     <form action="{{route('profile.update')}}" method="post">
                         @csrf
                         <label for="number" style="font-size:21px">Provide a Phone Number</label>
-                        <input type="email" name="email" placeholder="Email">
                         <input type="text" name="newphone" placeholder="New number">
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success">Add</button>
                     </form>
                         
                     @else
@@ -75,13 +87,12 @@
                             <h5>Phone Number - {{auth()->user()->phone}}</h5>
                         </div>
                         
-                        <div class="col-6">
+                        <div class="col-6 text-center">
                             <form action="{{route('profile.update')}}" method="post">
                                 @csrf
                                 <label for="phone" style="font-size:21px">Change phone number--></label>
-                                <input type="text" name="phone" placeholder="Old number">
                                 <input type="text" name="newphone" placeholder="New number">
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <button type="submit" class="btn btn-success">Change</button>
                             </form>
 
                         </div>
@@ -95,12 +106,20 @@
                     <hr>
 
                     <!-- Button to View Assigned Nurse -->
-                    <a href="#" class="btn btn-success">View Assigned Nurse</a>
+                    <div class="row" style="justify-content: center">
+                        <a href="#" class="btn btn-success">View Assigned Nurse</a>
+
+                    </div>
+                    
 
                     <hr>
 
                     <!-- Button to View Due Balance -->
-                    <a href="#" class="btn btn-success">View Due Balance</a>
+                    <div class="row" style="justify-content: center">
+                        <a href="#" class="btn btn-success">View Due Balance</a>
+
+                    </div>
+                    
                 </div>
             </div>
         </div>

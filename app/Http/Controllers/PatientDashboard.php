@@ -16,24 +16,51 @@ class PatientDashboard extends Controller
 
     function updateProfile(Request $request){
 
-        if(!$request->email){
-            $user = Patient::where('phone', $request->phone)->first();
-            $user->phone = $request->newphone;
-            $user->save();
-            return redirect(route('patientprofile'))->with('success', 'Phone Number Changed!');
+        if ($request->newphone){
+            $current_user = Auth::user();
+            if($current_user->phone){
+            
+                $user = Patient::where('phone', $current_user->phone)->first();
+                $user->phone = $request->newphone;
+                $user->save();
+                return redirect(route('patientprofile'))->with('success', 'Phone Number Changed!');
 
-        } else {
-            $user = Patient::where('email', $request->email)->first();
-            $user->phone = $request->newphone;
-            $user->save();
-            return redirect(route('patientprofile'))->with('success', 'Phone Number Changed!');
+            } else {
+                $user = Patient::where('email', $current_user->email)->first();
+                $user->phone = $request->newphone;
+                $user->save();
+                return redirect(route('patientprofile'))->with('success', 'Phone Number Added!');
+            } 
 
+        } elseif ($request->picture){
+            $current_user = Auth::user();
+            $user = Patient::where('email', $current_user->email)->first();
+            $user->profilePicture = $request->file('picture')->getClientOriginalName();
+            $user->save();
+            $request->file('picture')->move('uploads/',$user->profilePicture);
+            return redirect(route('patientprofile'))->with('success', 'Profile Picture Added!');
         }
+        
 
 
 
         
 
     }
+
+    function imageChange(){
+        return view('imageChange');
+    }
+
+    function patientUpdateImage(Request $request){
+        $current_user = Auth::user();
+        $user = Patient::where('email', $current_user->email)->first();
+        $user->profilePicture = $request->file('picture')->getClientOriginalName();
+        $user->save();
+        $request->file('picture')->move('uploads/',$user->profilePicture);
+        return redirect(route('patientprofile'))->with('success', 'Profile Picture Updated!');
+
+    }
+
 
 }

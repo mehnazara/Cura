@@ -27,6 +27,8 @@ Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/patientprofile', [PatientDashboard::class, 'profile'])->name('patientprofile');
     Route::post('/patientprofile', [PatientDashboard::class,'updateProfile'])->name('profile.update');
+    Route::get('/patientimageupdate', [PatientDashboard::class, 'imageChange'])->name('patient.image');
+    Route::post('/patientimageupdate', [PatientDashboard::class, 'patientUpdateImage'])->name('patientimagechange');
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');
