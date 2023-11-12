@@ -4,9 +4,9 @@
 @section('content')
 <div class="container">
     
-    <div class="row justify-content-center" style="margin-top: 10px;">
+    <div class="row justify-content-center" style="margin: 10px;">
         <div class="col-12">
-            <div class="card" style="background-color:#355e3578;
+            <div class="card" style="background-color:#355e354f;
             color:blanchedalmond; font-weight:bold;">
                 <div class="card-header" style="font-size:25px; font-style:italic">Dashboard</div>
 
@@ -23,7 +23,10 @@
                                 <label for="picture">Upload Profile Picture:</label>
                                 <input type="file" name="picture" id="picture">
                                 <div class="div">
-                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    <button type="submit" class="btn" 
+                                    style="background-color: rgb(25, 86, 9); 
+                                    color:antiquewhite;border-radius:10px;
+                                    font-weight:bold;" >Upload</button>
                                 </div>
                                 
                             </form>
@@ -35,8 +38,10 @@
                                 <img src="{{URL::asset("uploads/".auth()->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
 
                             </div>
-                            <div class="row mt-2" style="justify-content: center">
-                                <a href="{{route('patient.image')}}" class="btn btn-success">Change Image</a>
+                            <div class="row mt-2" style="justify-content: center;">
+                                <a href="{{route('patient.image')}}" class="btn" 
+                                style="background-color: rgb(30, 95, 12); color:antiquewhite;
+                                border-radius:10px;font-weight:bold;">Change Image</a>
                             </div>
 
                         </div>
@@ -50,6 +55,8 @@
                         <div class="col-6">
                             <h5>Email - {{auth()->user()->email}}</h5>
                         </div>
+                        @if (auth()->user()->report == '')
+                            
                         
                         <div class="col-6 text-center">
                             <form action="{{route('profile.update')}}" class="float-right" method="post" enctype="multipart/form-data">
@@ -57,12 +64,23 @@
                                 <label for="report">Upload Medical Report:</label>
                                 <input type="file" name="report">
                                 <div class="div">
-                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    <button type="submit" class="btn"
+                                    style="background-color: rgb(28, 83, 12); 
+                                    color:antiquewhite;border-radius:10px;
+                                    font-weight:bold;">Upload</button>
                                 </div>
                                 
                             </form>
 
                         </div>
+                        @else
+                        <div class="row" style="margin-left:170px;">
+                            <a href="{{route('patient.report')}}" class="btn"
+                            style="background-color: rgb(24, 84, 8); 
+                            color:antiquewhite;font-weight:bold;">View Medical Report</a>
+    
+                        </div>
+                        @endif
                     
 
                     </div>
@@ -76,9 +94,12 @@
                     <!-- Button to Update Information -->
                     <form action="{{route('profile.update')}}" method="post">
                         @csrf
-                        <label for="number" style="font-size:21px">Provide a Phone Number</label>
+                        <label for="number" style="font-size:21px">Provide a Phone Number--> </label>
                         <input type="text" name="newphone" placeholder="New number">
-                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="submit" class="btn"
+                        style="background-color: rgb(33, 79, 10); 
+                        color:antiquewhite;border-radius:10px;
+                        font-weight:bold;">Add</button>
                     </form>
                         
                     @else
@@ -92,7 +113,10 @@
                                 @csrf
                                 <label for="phone" style="font-size:21px">Change phone number--></label>
                                 <input type="text" name="newphone" placeholder="New number">
-                                <button type="submit" class="btn btn-success">Change</button>
+                                <button type="submit" class="btn"
+                                style="background-color: rgb(28, 68, 8); 
+                                color:antiquewhite;border-radius:10px;
+                                font-weight:bold;">Change</button>
                             </form>
 
                         </div>

@@ -39,6 +39,14 @@ class PatientDashboard extends Controller
             $user->save();
             $request->file('picture')->move('uploads/',$user->profilePicture);
             return redirect(route('patientprofile'))->with('success', 'Profile Picture Added!');
+        } else {
+            $current_user = Auth::user();
+            $user = Patient::where('email', $current_user->email)->first();
+            $user->report = $request->file('report')->getClientOriginalName();
+            $user->save();
+            $request->file('report')->move('uploads/',$user->report);
+            return redirect(route('patientprofile'))->with('success', 'Report Uploaded Successfully!');
+
         }
         
 
@@ -59,6 +67,20 @@ class PatientDashboard extends Controller
         $user->save();
         $request->file('picture')->move('uploads/',$user->profilePicture);
         return redirect(route('patientprofile'))->with('success', 'Profile Picture Updated!');
+
+    }
+
+    function reportChange(){
+        return view('report');
+    }
+
+    function patientUpdateReport(Request $request){
+        $current_user = Auth::user();
+        $user = Patient::where('email', $current_user->email)->first();
+        $user->report = $request->file('report')->getClientOriginalName();
+        $user->save();
+        $request->file('report')->move('uploads/',$user->report);
+        return redirect(route('patientprofile'))->with('success', 'Report Updated!');
 
     }
 

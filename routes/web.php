@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/patientprofile', [PatientDashboard::class,'updateProfile'])->name('profile.update');
     Route::get('/patientimageupdate', [PatientDashboard::class, 'imageChange'])->name('patient.image');
     Route::post('/patientimageupdate', [PatientDashboard::class, 'patientUpdateImage'])->name('patientimagechange');
+    Route::get('/patientreportupdate', [PatientDashboard::class, 'reportChange'])->name('patient.report');
+    Route::post('/patientreportupdate', [PatientDashboard::class, 'patientUpdateReport'])->name('patientreportchange');
+
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');
