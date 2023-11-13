@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientDashboard;
 use App\Http\Controllers\Password;
 use App\Http\Controllers\GoogleLogin;
 use App\Http\Controllers\Service;
+use App\Http\Controllers\NurseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,10 @@ Route::post('/reset-password', [Password::class, 'resetpasswordpost'])->name('pa
 Route::get('/auth-google', [GoogleLogin::class, 'googlelogin'])->name('login.google');
 Route::any('/auth/google/home', [GoogleLogin::class, 'callbackfromGoogle'])->name('google.callback');
 Route::get('/services-types', [Service::class, 'serviceList'])->name('service');
+
+
+Route::get('/nurses/{id}', [NurseController::class, 'Nurse_show']);
+Route::get('/create-nurse', [NurseController::class, 'create']);
+Route::get('/nurses', [NurseController::class, 'index'])->name('nurses.index');
+
+

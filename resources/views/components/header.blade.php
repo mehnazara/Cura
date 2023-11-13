@@ -15,6 +15,7 @@ border-radius:10px;">
           <a class="nav-link" href="{{route('patientprofile')}}" style="color: rgb(246, 209, 161);
           font-size:20px; font-weight:bold;">Profile</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{route('logout')}}" style="color: rgb(246, 209, 161);
           font-size:20px; font-weight:bold;">Logout</a>
@@ -29,6 +30,7 @@ border-radius:10px;">
           font-size:20px; font-weight:bold;">Registration</a>
         </li>
         @endauth
+        
       </ul>
       @auth
       <span class="navbar-text" style="font-size: 18px; font-weight: bolder; color:#b4a070">
