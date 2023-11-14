@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('nurse_id');
-            $table->integer('rating');
-            $table->text('comment')->nullable();
-            $table->timestamps();
+        Schema::table('nurses', function (Blueprint $table) {
+            $table->string('nursing_types');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('nurses', function (Blueprint $table) {
+            $table->dropColumn('nursing_types');
+        });
     }
 };

@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientDashboard;
 use App\Http\Controllers\Password;
 use App\Http\Controllers\GoogleLogin;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\NurseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,5 +45,7 @@ Route::any('/auth/google/home', [GoogleLogin::class, 'callbackfromGoogle'])->nam
 Route::get('/services-types', [ServiceController::class, 'serviceList'])->name('service');
 
 
-Route::get('/nurses/{id}', 'NurseController@show')->name('nurses.show');
-Route::post('/nurses/{id}/review', 'NurseController@storeReview')->name('nurses.storeReview');
+//Route::get('/nurses/{id}', 'NurseController@show')->name('nurses.show');
+//Route::post('/nurses/{id}/review', 'NurseController@storeReview')->name('nurses.storeReview');
+//Route::get('/nurses/{id}', [NurseController::class, 'Nurse_show']);
+Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.profiles');

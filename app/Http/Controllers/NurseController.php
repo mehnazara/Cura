@@ -36,4 +36,9 @@ class NurseController extends Controller
 
         return redirect()->route('nurses.show', $nurseId)->with('success', 'Review submitted successfully!');
     }
+
+    public function profiles(){
+        $nurses = Nurse::all();
+        return view('/nurse/allprofiles', compact('nurses'));
+    }
 }
