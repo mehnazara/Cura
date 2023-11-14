@@ -6,7 +6,7 @@ use App\Http\Controllers\Home;
 use App\Http\Controllers\PatientDashboard;
 use App\Http\Controllers\Password;
 use App\Http\Controllers\GoogleLogin;
-use App\Http\Controllers\Service;
+use App\Http\Controllers\ServiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,4 +41,4 @@ Route::get('/reset-password/{token}', [Password::class, 'resetpassword'])->name(
 Route::post('/reset-password', [Password::class, 'resetpasswordpost'])->name('password.reset.post');
 Route::get('/auth-google', [GoogleLogin::class, 'googlelogin'])->name('login.google');
 Route::any('/auth/google/home', [GoogleLogin::class, 'callbackfromGoogle'])->name('google.callback');
-Route::get('/services-types', [Service::class, 'serviceList'])->name('service');
+Route::get('/services-types', [ServiceController::class, 'serviceList'])->name('service');

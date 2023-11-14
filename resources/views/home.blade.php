@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
+  @auth
   <div class="dropdown" style="margin: 5px; color:bisque;">
     <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
       <img src="{{URL::asset('images/dropdown.png')}}" width="65px" height="65px">
@@ -16,6 +17,21 @@
         color:rgb(68, 36, 4);">Schedule</a></li>
     </ul>
   </div>
+  @else
+  <div class="dropdown" style="margin: 5px; color:bisque;">
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+      <img src="{{URL::asset('images/dropdown.png')}}" width="65px" height="65px">
+    </button>
+    <ul class="dropdown-menu" style="background-color: rgb(198, 201, 154);">
+      <li><a class="dropdown-item" href="{{route('service')}}" style="font-weight: bold;
+      color:rgb(68, 36, 4);">Services</a></li>
+      <li><a class="dropdown-item" href="#" style="font-weight: bold;
+        color:rgb(68, 36, 4);">Nurse Profiles</a></li>
+    </ul>
+  </div>
+    
+  @endauth
+  
 
 
   <div class="row" style="justify-content:center">
