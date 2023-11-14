@@ -14,7 +14,7 @@
         
         @foreach ($services as $service )
 
-        <div class="card" style="width: 18rem; margin:10px;background-color: #4a7951c9;">
+        <div class="card shadow" style="width: 18rem; margin:10px;background-color: #4a7951c9;">
             <img class="card-img-top" src="{{URL::asset("uploads/".$service->image)}}" alt="Card image cap">
             <div class="card-body" style="color: #f1eec6;">
               <h5 class="card-title">{{$service->name}}</h5>
@@ -54,7 +54,7 @@
                   
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('home')}}">
+                    <a href="{{url('/services-types/')}}/{{$service->service_id}}">
                   <button type="button" style="background-color:rgb(229, 204, 173);
                   border-radius:15px;padding:8px;color:rgb(65, 40, 7);
                   font-weight:bolder">Assigned Nurses</button></a>

@@ -43,9 +43,10 @@ Route::post('/reset-password', [Password::class, 'resetpasswordpost'])->name('pa
 Route::get('/auth-google', [GoogleLogin::class, 'googlelogin'])->name('login.google');
 Route::any('/auth/google/home', [GoogleLogin::class, 'callbackfromGoogle'])->name('google.callback');
 Route::get('/services-types', [ServiceController::class, 'serviceList'])->name('service');
-
+Route::get('/services-types/{id}', [ServiceController::class, 'showAssignedNurses']);
 
 //Route::get('/nurses/{id}', 'NurseController@show')->name('nurses.show');
 //Route::post('/nurses/{id}/review', 'NurseController@storeReview')->name('nurses.storeReview');
 //Route::get('/nurses/{id}', [NurseController::class, 'Nurse_show']);
 Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.profiles');
+

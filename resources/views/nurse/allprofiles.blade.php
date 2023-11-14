@@ -63,7 +63,7 @@
                         $types = json_decode($nurse->nursing_types);
                         @endphp
                         <div class="row" style="color:black;font-weight:bolder;margin-top:25px;">
-                          <h5><u>Associated With - </u></h5>
+                          <h5><i><u>Associated With</u></i></h5>
                         </div>
                         
 
