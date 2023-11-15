@@ -19,5 +19,8 @@ class Patient extends Model
         'gender',
         'google_id'
     ];
-    
+    public function nurses()
+    {
+        return $this->belongsToMany(Nurse::class);
+    }
 }

@@ -50,3 +50,6 @@ Route::get('/services-types/{id}', [ServiceController::class, 'showAssignedNurse
 //Route::get('/nurses/{id}', [NurseController::class, 'Nurse_show']);
 Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.profiles');
 
+
+Route::get('/{patient_id}/book-nurse/{nurse_id}', [NurseController::class, 'bookNurse']);
+Route::get('{patient_id}/assigned_nurses', [NurseController::class, 'assignedNurses'])->name('assignedNurses');;

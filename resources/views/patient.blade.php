@@ -131,8 +131,10 @@
 
                     <!-- Button to View Assigned Nurse -->
                     <div class="row" style="justify-content: center">
-                        <a href="#" class="btn" style="background-color: rgb(24, 84, 8); 
-                        color:antiquewhite;font-weight:bold;">View Assigned Nurse</a>
+                        <a href="{{ route('assignedNurses', 'patient_id') }}"
+                            class="btn" style="background-color: rgb(24, 84, 8); 
+                            color:antiquewhite;font-weight:bold;">View Assigned Nurse
+                        </a>
 
                     </div>
                     

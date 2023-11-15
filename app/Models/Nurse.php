@@ -18,4 +18,8 @@ class Nurse extends Model
         'age',
         'photo'
     ];
+    public function patients()
+    {
+        return $this->belongsToMany(Patient::class);
+    }
 }

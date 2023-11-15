@@ -19,11 +19,14 @@
             <div class="card-body" style="color: #f1eec6;">
               <h5 class="card-title">{{$nurse->name}}</h5>
               <div class="div">
+                
                 <button style="border-radius: 10px;padding:6px;
                 background-color:bisque;color:#012d1ddd;font-weight:bold;"
                 type="button" data-toggle="modal" data-target="#modal-{{$nurse->nurse_id}}">
                 View Details</button>
-                <a href="#">
+                
+                <a href="{{ route('assignedNurses', 'patient_id') }}">
+
                   <button type="button" style="border-radius: 10px;padding:6px;
                   background-color:#012d1ddd;color:bisque;" >Book Nurse</button>
                 </a>
