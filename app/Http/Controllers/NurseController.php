@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Nurse;
 use App\Models\Review;
 use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
+
 
 class NurseController extends Controller
 {
@@ -42,27 +44,26 @@ class NurseController extends Controller
         $nurses = Nurse::all();
         return view('/nurse/allprofiles', compact('nurses'));
     }
-    public function bookNurse($patient_id, $nurse_id) {
+    public function bookNurse($nurse_id) {
 
-        $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'nurse_id' => 'required|exists:nurses,id',
-        ]);
+        $patient = Auth::user();
         
-        $patient = Patient::find($request->input('patient_id'));
-        $nurse = Nurse::find($request->input('nurse_id'));
+        $patient = Patient::find($patient->patient_id);
+        $nurse = Nurse::find($nurse_id);
     
-      
-        $patient->nurses()->attach($nurse);
-    
-        
-        return view('/assigned_nurses')->with('message', 'Successfully assigned the nurse, ' . $nurse->name);
+
+
+        $data = json_decode($patient->nurses);
+
+        $booked_nurses = [];
+        foreach($data as $booked){
+            $one_nurse = Nurse::find($booked);
+            $booked_nurses[] = $one_nurse;
+        }
+        $allnurses = [$booked_nurses,$nurse];
+        return view('/booked_nurses',compact('allnurses'));
+        //return $allnurses;
     }
-    public function assignedNurses($patient_id) {
     
-        $patient = Patient::find($patient_id);
-        $assignedNurses = $patient->nurses ?? []; // Adjust this based on your relationship
-        
-        return view('/assigned_nurses', compact('assignedNurses'));
-    }
+ 
 }

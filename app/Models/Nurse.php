@@ -16,10 +16,11 @@ class Nurse extends Model
         'qualifications',
         'gender',
         'age',
-        'photo'
+        'photo',
+        'served_patients'
     ];
     public function patients()
     {
-        return $this->belongsToMany(Patient::class);
+        return $this->belongsToMany(Patient::class, 'patient_nurse', 'nurse_id', 'patient_id');
     }
 }

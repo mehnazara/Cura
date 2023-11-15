@@ -17,10 +17,11 @@ class Patient extends Model
         'password',
         'birthdate',
         'gender',
-        'google_id'
+        'google_id',
+        'nurses'
     ];
     public function nurses()
     {
-        return $this->belongsToMany(Nurse::class);
+        return $this->belongsToMany(Nurse::class, 'patient_nurse', 'patient_id', 'nurse_id');
     }
 }

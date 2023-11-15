@@ -25,11 +25,12 @@
                 type="button" data-toggle="modal" data-target="#modal-{{$nurse->nurse_id}}">
                 View Details</button>
                 
-                <a href="{{ route('assignedNurses', 'patient_id') }}">
-
+                <a href="{{url('/booked_nurses/')}}/{{$nurse->nurse_id}}">
                   <button type="button" style="border-radius: 10px;padding:6px;
-                  background-color:#012d1ddd;color:bisque;" >Book Nurse</button>
+                    background-color:#012d1ddd;color:bisque;">Book Nurse</button>
                 </a>
+
+
               </div>
               
             </div>
