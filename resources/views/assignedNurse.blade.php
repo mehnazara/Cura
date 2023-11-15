@@ -44,7 +44,7 @@
                 </div>
                 <div class="row" style="justify-content: center;margin:25px;">
                     <p class="lead" >
-                        <a class="btn shadow" href="#" role="button" 
+                        <a class="btn shadow" href="{{url('/booked_nurses/')}}/{{$nurse->nurse_id}}" role="button" 
                         style="background-color: rgba(78, 43, 6, 0.845);
                         color:rgb(217, 184, 136);border-radius:20px;">Book Nurse</a>
                       </p>

@@ -8,14 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+    protected $table = "reviews";
+    protected $primaryKey = "nurse_id";
+    protected $fillable = ['nurse_id', 'rating', 'comment'];
 
-    protected $fillable = ['patient_id', 'nurse_id', 'rating', 'comment'];
-
-    
-    public function user()
-    {
-        return $this->belongsTo(Patient::class);
-    }
 
     public function nurse()
     {

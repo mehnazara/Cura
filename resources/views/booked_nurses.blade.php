@@ -42,21 +42,10 @@
                         <h5 class="card-title">Name:{{ $allnurses[1]['name'] }}</h5>
                         <h5 class="card-title">Age:{{ $allnurses[1]['age'] }}</h5>
                         <h5 class="card-title">Gender:{{ $allnurses[1]['gender'] }}</h5>
-                        <button id="requestButton" type="button" style="border-radius: 8px; padding: 6px; 
-                        background-color: #012d1ddd; color: bisque;">Request Nurse</button>
+                        <a href="#"><button id="requestButton" type="button" style="border-radius: 8px; padding: 6px; 
+                        background-color: #012d1ddd; color: bisque;">Request Nurse</button></a>
 
-                        <script>
-                            document.getElementById('requestButton').addEventListener('click', function() {
-                                this.classList.add('blurred');
-                            });
-                        </script>
-
-                        <style>
-                            #requestButton.blurred {
-                                filter: blur(1.5px); 
-                                pointer-events: none; 
-                            }
-                        </style>
+                        
 
                        
                     </div>

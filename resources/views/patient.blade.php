@@ -76,8 +76,9 @@
                         @else
                         <div class="row" style="margin-left:170px;">
                             <a href="{{route('patient.report')}}" class="btn"
-                            style="background-color: rgb(24, 84, 8); 
-                            color:antiquewhite;font-weight:bold;">View Medical Report</a>
+                            style="background-color: rgba(80, 127, 67, 0.515); 
+                            color:antiquewhite;font-weight:bold;
+                            border-radius:20px;">View Medical Report</a>
     
                         </div>
                         @endif
@@ -131,22 +132,14 @@
 
                     <!-- Button to View Assigned Nurse -->
                     <div class="row" style="justify-content: center">
-                        <a href="{{ route('assignedNurses', 'patient_id') }}"
-                            class="btn" style="background-color: rgb(24, 84, 8); 
-                            color:antiquewhite;font-weight:bold;">View Assigned Nurse
+                        <a href="#"
+                            class="btn" style="background-color: rgb(58, 112, 43); 
+                            color:antiquewhite;font-weight:bold;
+                            border-radius:20px;">View Service Dashboard
                         </a>
 
                     </div>
                     
-
-                    <hr>
-
-                    <!-- Button to View Due Balance -->
-                    <div class="row" style="justify-content: center">
-                        <a href="#" class="btn" style="background-color: rgb(24, 84, 8); 
-                        color:antiquewhite;font-weight:bold;">View Due Balance</a>
-
-                    </div>
                     
                 </div>
             </div>
