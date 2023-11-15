@@ -8,6 +8,7 @@ use App\Http\Controllers\Password;
 use App\Http\Controllers\GoogleLogin;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\NurseController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,4 +50,6 @@ Route::get('/services-types/{id}', [ServiceController::class, 'showAssignedNurse
 //Route::post('/nurses/{id}/review', 'NurseController@storeReview')->name('nurses.storeReview');
 //Route::get('/nurses/{id}', [NurseController::class, 'Nurse_show']);
 Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.profiles');
+Route::post('/', [SearchController::class, 'search'])->name('search');
+Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
 
