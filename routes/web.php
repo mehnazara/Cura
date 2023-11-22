@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/patientreportupdate', [PatientDashboard::class, 'reportChange'])->name('patient.report');
     Route::post('/patientreportupdate', [PatientDashboard::class, 'patientUpdateReport'])->name('patientreportchange');
     Route::get('/booked_nurses/{nurse_id}', [NurseController::class, 'bookNurse'])->name('bookedNurses');
+    Route::get('/submitNurseReview/{nurse_id}', [NurseReview::class, 'sendToReview']);
+    Route::post('/submitNurseReview/{nurse_id}', [NurseReview::class, 'submitReview']);
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');
@@ -57,4 +59,5 @@ Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.
 Route::post('/', [SearchController::class, 'search'])->name('search');
 Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
 Route::get('/nurseReviews/{nurse_id}', [NurseReview::class, 'showReview'])->name('nurse.reviews');
+
 

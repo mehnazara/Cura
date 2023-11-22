@@ -105,6 +105,13 @@
             @endforeach
         </div>
         
+        <div class="row" style="justify-content: center;margin:20px;">
+            <a href="{{url('/submitNurseReview/')}}/{{$nurse->nurse_id}}">
+                <button type="button" style="background-color:rgb(229, 204, 173);
+                border-radius:15px;padding:8px;color:rgb(65, 40, 7);
+                font-weight:bolder">Submit a Review</button></a>
+        </div>
+        
 
     </div>
 @endsection

@@ -31,4 +31,58 @@ class NurseReview extends Controller
     }
     }
 
+    public function sendToReview($nurse_id){
+        
+        $nurse = Nurse::find($nurse_id);
+        //return $nurse_id;
+        return view("/reviews/submitNurseReview",compact('nurse'));
+    }
+
+    public function submitReview(Request $request,$nurse_id){
+        $request->validate([
+            'rating' => 'required',
+            'comment' => 'required'
+        ]);
+        $patient = Auth::user();
+        $data['patient_id'] = $patient->patient_id;
+        $data['comment'] = $request->comment;
+        $data['rating'] = number_format($request->rating);
+        $comment = Comment::create($data);
+        if (!$comment){
+            return redirect(route('nurse.profiles'))->with('error', 'Failed to Add Review!');
+        }
+        $nurse = Review::find($nurse_id);
+        if (!$nurse){
+
+            $info['nurse_id'] = $nurse_id;
+            $info['comments'] = json_encode([$comment->comment_id]);
+            $info['rating'] = $comment->rating;
+            $review = Review::create($info);
+
+            
+            //data[]
+            return redirect(route('nurse.profiles'))->with('success', 'Review Added!');
+        }
+
+        $listOfComments = json_decode($nurse->comments);
+        $count = 1;
+        $total_rating = $comment->rating;
+        foreach($listOfComments as $cids){
+            $temp = Comment::find($cids);
+            $count += 1;
+            $total_rating += $temp->rating;
+
+        }
+        $listOfComments[] = $comment->comment_id;
+        $newRate = floor($total_rating/$count);
+        $nurse->comments = json_encode($listOfComments);
+        $nurse->rating = $newRate;
+        $nurse->save();
+
+        return redirect(route('nurse.profiles'))->with('success', 'Review Added!');
+        
+        //return $patient;
+        
+    }
+
 }
