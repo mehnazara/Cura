@@ -53,7 +53,8 @@ Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.
 
 
 
-Route::get('/ratings-and-reviews', [NurseReview::class, 'index'])->name('ratings-and-reviews');
+//Route::get('/ratings-and-reviews', [NurseReview::class, 'index'])->name('ratings-and-reviews');
 Route::post('/', [SearchController::class, 'search'])->name('search');
 Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
+Route::get('/nurseReviews/{nurse_id}', [NurseReview::class, 'showReview'])->name('nurse.reviews');
 

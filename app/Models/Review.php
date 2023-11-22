@@ -10,11 +10,9 @@ class Review extends Model
     use HasFactory;
     protected $table = "reviews";
     protected $primaryKey = "nurse_id";
-    protected $fillable = ['nurse_id', 'rating', 'comment'];
-
-
-    public function nurse()
-    {
-        return $this->belongsTo(Nurse::class);
-    }
+    protected $fillable = [
+        'nurse_id',
+        'comments',
+        'rating',
+    ];
 }
