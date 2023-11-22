@@ -106,71 +106,92 @@
             @foreach ($nurses as $nurse )
     
             <div class="card" style="width: 18rem; margin:10px;background-color: #4a7951c9;">
-                <img class="card-img-top" src="{{URL::asset("uploads/".$nurse->photo)}}" alt="Card image cap">
-                <div class="card-body" style="color: #f1eec6;">
-                  <h5 class="card-title">{{$nurse->name}}</h5>
-                  <div class="div">
-                    <button style="border-radius: 10px;padding:6px;
-                    background-color:bisque;color:#012d1ddd;font-weight:bold;"
-                    type="button" data-toggle="modal" data-target="#modal-{{$nurse->nurse_id}}">
-                    View Details</button>
-                    <a href="{{url('/booked_nurses/')}}/{{$nurse->nurse_id}}">
-                      <button type="button" style="border-radius: 10px;padding:6px;
-                      background-color:#012d1ddd;color:bisque;" >Book Nurse</button>
-                    </a>
-                  </div>
+              <img class="card-img-top" src="{{URL::asset("uploads/".$nurse->photo)}}" alt="Card image cap">
+              <div class="card-body" style="color: #f1eec6;">
+                <h5 class="card-title">{{$nurse->name}}</h5>
+                <div class="div">
                   
+                  <button style="border-radius: 10px;padding:6px;
+                  background-color:bisque;color:#012d1ddd;font-weight:bold;"
+                  type="button" data-toggle="modal" data-target="#modal-{{$nurse->nurse_id}}">
+                  View Details</button>
+                  
+                  <a href="{{url('/booked_nurses/')}}/{{$nurse->nurse_id}}">
+                    <button type="button" style="border-radius: 10px;padding:6px;
+                      background-color:#012d1ddd;color:bisque;">Book Nurse</button>
+                  </a>
+  
+  
                 </div>
+                
               </div>
-    
-              <div class="modal fade" id="modal-{{$nurse->nurse_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content" style="background-color: #bcb88af1;">
-    
-                    <div class="modal-header" style="color: rgb(78, 46, 7); font-weight:bold;">
-                      
-                      @if ($nurse->gender === 'female')
-                      <img src="{{URL::asset("images/female.png")}}" width="50px" height="30px">
-                      @else
-                      <img src="{{URL::asset("images/male.png")}}" width="50px" height="30px">
-                      @endif
-                      <h5 class="modal-title" id="exampleModalLongTitle">{{$nurse->name}}</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-    
-                    <div class="modal-body" style="margin-left: 15px;color: rgb(72, 43, 7);">
-                        <div class="row">
-                            Graduated from: {{$nurse->qualifications}}
-                        </div>
-                        <div class="row">
-                            Gender: {{$nurse->gender}} nurse.
-                        </div>
-                        <div class="row">
-                            Age: {{$nurse->age}} years old.
-                        </div>
-                            @php
-                            $types = json_decode($nurse->nursing_types);
-                            @endphp
-                            <div class="row" style="color:black;font-weight:bolder;margin-top:25px;">
-                              <h5><i><u>Associated With</u></i></h5>
-                            </div>
-                            
-    
-                            @foreach ($types as $type )
-                            <div class="row">
-                              <span>{{$type}}</span>
-                            </div>
-                            
+            </div>
+  
+            <div class="modal fade" id="modal-{{$nurse->nurse_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="background-color: #bcb88af1;">
+  
+                  <div class="modal-header" style="color: rgb(78, 46, 7); font-weight:bold;">
                     
-                            @endforeach
-                      
-                      
-                    </div>
+                    @if ($nurse->gender === 'female')
+                    <img src="{{URL::asset("images/female.png")}}" width="50px" height="30px">
+                    @else
+                    <img src="{{URL::asset("images/male.png")}}" width="50px" height="30px">
+                    @endif
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{$nurse->name}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+  
+                  <div class="modal-body" style="margin-left: 15px;color: rgb(72, 43, 7);">
+                      <div class="row">
+                          Graduated from: {{$nurse->qualifications}}
+                      </div>
+                      <div class="row">
+                          Gender: {{$nurse->gender}} nurse.
+                      </div>
+                      <div class="row">
+                          Age: {{$nurse->age}} years old.
+                      </div>
+                          @php
+                          $types = json_decode($nurse->nursing_types);
+                          @endphp
+                          <div class="row" style="color:black;font-weight:bolder;margin-top:25px;">
+                            <h5><i><u>Associated With</u></i></h5>
+                          </div>
+                          
+                          <div class="row">
+  
+                          <div class="col">
+  
+                          
+                          @foreach ($types as $type )
+                          <div class="row">
+                            <span>{{$type}}</span>
+                          </div>
+                          
+                  
+                          @endforeach
+                          </div>
+                          
+                          <a href="{{url('/submitNurseReview/')}}/{{$nurse->nurse_id}}">
+                              <button type="button" style="background-color:rgb(229, 204, 173);
+                              border-radius:15px;padding:6px;color:rgb(65, 40, 7);
+                              font-weight:bolder;margin-right:5px;">Submit a Review</button></a>
+                        
+                          <a href="{{url('/nurseReviews/')}}/{{$nurse->nurse_id}}">
+                            <button type="button" style="border-radius: 10px;padding:6px;
+                              background-color:#012d1ddd;color:bisque;
+                              margin-right:20px;">View Reviews</button>
+                          </a>
+                        </div>
+                    
+                    
                   </div>
                 </div>
               </div>
+            </div>
                 
             @endforeach
         </div>
