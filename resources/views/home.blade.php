@@ -67,16 +67,19 @@
 
       </div>
   </div>
+  
   <div class="row" style="justify-content: center">
-      <div class="box shadow-lg" 
-    style="background-color: rgba(74, 48, 10, 0.073);
-    border-radius:10px;
-    margin-top:20px;">
-    <h2 style="color: rgb(215, 184, 143);
-    font-style:italic;">"Quality Nursing At Your Doorstep."</h2>
+    <div class="box shadow-lg"
+        style="background-color: rgba(74, 48, 10, 0.073); border-radius:10px; margin-top:20px;">
+        <h2 style="color: rgb(215, 184, 143); font-style:italic;">"Quality Nursing At Your Doorstep."</h2>
 
-      </div>
-  </div>
+        
+        <a href="{{ route('ratings-and-reviews') }}" class="btn btn-success" style="margin-top: 20px;">Nurse reviews</a>
+
+    </div>
 </div>
+
+</div>
+
 
 @endsection

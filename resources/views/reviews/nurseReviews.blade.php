@@ -2,23 +2,32 @@
 
 @section('title', 'Ratings and Reviews')
 
-@section('content')
+{{-- @section('content')
     <div class="container">
         <h2>Ratings and Reviews</h2>
-
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <!-- Form for submitting reviews -->
-        <form action="{{ route('ratings-and-reviews.submit') }}" method="post">
+        <form action="/reviews/store" method="POST">
             @csrf
-            <label for="nurse_id">Enter Nurse ID:</label>
-            <input type="text" name="nurse_id" id="nurse_id">
-            <button type="submit">Submit Review</button>
+            <input type="text" name="title">
+            <textarea name="body" placeholder="body content..."></textarea>
+            <button> Save Reviews</button>
         </form>
     </div>
-@endsection
+ --}}
+
+
+    @section('content')
+    <div class="container">
+        <h2 style="color: white; background-color: red; padding: 20px;">Ratings and Reviews</h2>
+        <form action="/reviews/store" method="POST">
+            @csrf
+            {{-- <input type="hidden" name="nurse_id" value="{{$nurse->id}}" placeholder="Nurse's ID"> --}}
+            <input type="text" name="title" placeholder="Title">
+            <textarea name="body" placeholder="write your review here..."></textarea>
+            <button> Save Reviews</button>
+        </form>
+    </div>
+
+    
+    
+    @endsection
+

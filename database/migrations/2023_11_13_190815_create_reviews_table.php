@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreign('nurse_id')->references('nurse_id')->on('nurses')->onDelete('cascade');
             $table->integer('rating');
             $table->text('comment')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

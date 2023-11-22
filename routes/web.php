@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\Home;
-use App\Http\Controllers\PatientDashboard;
 use App\Http\Controllers\Password;
+use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\GoogleLogin;
-use App\Http\Controllers\ServiceController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NurseController;
+use App\Http\Controllers\PatientDashboard;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\NurseReview;
+use App\Http\Controllers\ServiceController;
+//use App\Http\Controllers\NurseReview;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,9 +52,11 @@ Route::get('/services-types/{id}', [ServiceController::class, 'showAssignedNurse
 Route::get('/nurseProfiles', [NurseController::class, 'profiles'])->name('nurse.profiles');
 
 
+Route::get('/ratings-and-reviews', [ReviewController::class, 'index'])->name('ratings-and-reviews');
 
 
-Route::get('/ratings-and-reviews', [NurseReview::class, 'index'])->name('ratings-and-reviews');
+Route::post('/reviews/store', 'ReviewController@store')->name('reviews.store');
+
 Route::post('/', [SearchController::class, 'search'])->name('search');
 Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
 
