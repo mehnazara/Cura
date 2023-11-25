@@ -14,8 +14,8 @@
         color:rgb(68, 36, 4);">Services</a></li>
         <li><a class="dropdown-item" href="{{route('nurse.profiles')}}" style="font-weight: bold;
           color:rgb(68, 36, 4);">Nurse Profiles</a></li>
-        <li><a class="dropdown-item" href="#" style="font-weight: bold;
-          color:rgb(68, 36, 4);">Schedule</a></li>
+        <li><a class="dropdown-item" href="{{url('currentserv')}}" style="font-weight: bold;
+          color:rgb(68, 36, 4);">Service Dashboard</a></li>
       </ul>
     </div>
     

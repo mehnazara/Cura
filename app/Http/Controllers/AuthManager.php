@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Patient;
 
+
 class AuthManager extends Controller
 {
     function register(){
