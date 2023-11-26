@@ -13,10 +13,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6 mt-3">
-                            <h5>Name - {{auth()->user()->name}}</h5>
+                            <h5>Name - {{auth()->guard('web')->user()->name}}</h5>
                         </div>
                         
-                        @if(auth()->user()->profilePicture == '')
+                        @if(auth()->guard('web')->user()->profilePicture == '')
                         <div class="col-6 text-center">
                             <form action="{{route('profile.update')}}" class="float-right" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -35,7 +35,7 @@
                         @else
                         <div class="col-6 text-center">
                             <div class="row" style="justify-content: center">
-                                <img src="{{URL::asset("uploads/".auth()->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
+                                <img src="{{URL::asset("uploads/".auth()->guard('web')->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
 
                             </div>
                             <div class="row mt-2" style="justify-content: center;">
@@ -53,9 +53,9 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <h5>Email - {{auth()->user()->email}}</h5>
+                            <h5>Email - {{auth()->guard('web')->user()->email}}</h5>
                         </div>
-                        @if (auth()->user()->report == '')
+                        @if (auth()->guard('web')->user()->report == '')
                             
                         
                         <div class="col-6 text-center">
@@ -90,7 +90,7 @@
 
                     <hr>
 
-                    @if(auth()->user()->phone == '')
+                    @if(auth()->guard('web')->user()->phone == '')
 
                     <!-- Button to Update Information -->
                     <form action="{{route('profile.update')}}" method="post">
@@ -106,7 +106,7 @@
                     @else
                     <div class="row">
                         <div class="col-6">
-                            <h5>Phone Number - {{auth()->user()->phone}}</h5>
+                            <h5>Phone Number - {{auth()->guard('web')->user()->phone}}</h5>
                         </div>
                         
                         <div class="col-6 text-center">

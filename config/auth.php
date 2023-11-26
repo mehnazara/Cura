@@ -18,6 +18,8 @@ return [
         'passwords' => 'users',
     ],
 
+    
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -39,6 +41,11 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'nurse' => [
+            'driver' => 'session',
+            'provider' => 'nurses',
         ],
     ],
 
@@ -69,6 +76,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'nurses' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Nurse_User::class,
+        ],
     ],
 
     /*

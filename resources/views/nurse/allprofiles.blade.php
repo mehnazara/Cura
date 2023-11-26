@@ -15,7 +15,7 @@
         @foreach ($nurses as $nurse )
 
         <div class="card" style="width: 18rem; margin:10px;background-color: #4a7951c9;">
-            <img class="card-img-top" src="{{URL::asset("uploads/".$nurse->photo)}}" alt="Card image cap">
+            <img class="card-img-top" src="{{URL::asset('uploads/'.$nurse->photo)}}" alt="Card image cap">
             <div class="card-body" style="color: #f1eec6;">
               <h5 class="card-title">{{$nurse->name}}</h5>
               <div class="div">

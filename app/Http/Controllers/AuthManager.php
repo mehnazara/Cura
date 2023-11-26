@@ -11,14 +11,14 @@ use App\Models\Patient;
 class AuthManager extends Controller
 {
     function register(){
-        if(Auth::check()){
+        if(Auth::guard('web')->check()){
             return redirect(route('home'));
         }
         return view('register');
     }
 
     function login(){
-        if(Auth::check()){
+        if(Auth::guard('web')->check()){
             return redirect(route('home'));
         }
         return view('login');
@@ -31,7 +31,7 @@ class AuthManager extends Controller
         ]);
 
         $credentials = $request->only('email','password');
-        if(Auth::attempt($credentials)){
+        if(Auth::guard('web')->attempt($credentials)){
             return redirect(route('home'))->with('success', 'Login successful!');
         }
         return redirect(route('login'))->with('error', 'Login details are not valid!');
@@ -63,7 +63,7 @@ class AuthManager extends Controller
 
     function logout(){
         Session::flush();
-        Auth::logout();
+        Auth::guard('web')->logout();
         return redirect(route('login'))->with('success','Logout successful!');
     }
 
