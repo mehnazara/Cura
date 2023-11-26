@@ -7,17 +7,17 @@
     <div class="row" style="justify-content: center;color:rgba(255, 228, 196, 0.882);">
         <h2 style="margin: 10px;">Complete Payment</h2>
     </div>
-    <hr style="border-color:rgba(250, 235, 215, 0.309);">
+    <hr style="border-color:rgba(250, 235, 215, 0.581);">
 
     <div class="row" style="justify-content: center;">
         <div class="col-8">
             <div class="panel panel-default credit-card-box text-center" 
-            style="background-color: rgba(203, 173, 136, 0.906);
-            color:rgb(68, 41, 5);font-weight:bolder;margin:20px;padding:20px;">
+            style="background-color: rgba(64, 37, 4, 0.514);
+            color:rgb(193, 170, 138);font-weight:bolder;margin:20px;padding:20px;">
                 <div class="panel-heading display-table" >
                         <h3 class="panel-title" >Payment Details</h3>
                 </div>
-                <hr style="border-color:rgba(60, 35, 3, 0.309);">
+                <hr style="border-color:rgba(209, 177, 136, 0.447)309);">
                 <div class="panel-body">
     
                     @if (Session::has('success'))
@@ -70,7 +70,7 @@
                             </div>
                         </div>
     
-                        <hr style="border-color:rgba(60, 35, 3, 0.309);">
+                        <hr style="border-color:rgba(209, 176, 132, 0.409);">
                         <div class="row" style="justify-content:center;">
 
                             @php
@@ -79,8 +79,8 @@
                             @endphp
                             
                             <button type="submit" style="border-radius: 10px;padding:10px;
-                            background-color:#3a2903dd;color:bisque;
-                            margin-right:20px;">Pay {{$bill}} BDT</button>
+                            background-color:#dec387dd;color:rgb(75, 43, 4);
+                            margin-right:20px;font-weight:bolder;">Pay {{$bill}} BDT</button>
                         </div>
                             
                     </form>
