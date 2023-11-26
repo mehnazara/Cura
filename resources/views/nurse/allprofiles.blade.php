@@ -70,7 +70,11 @@
                           <h5><i><u>Associated With</u></i></h5>
                         </div>
                         
+                        <div class="row">
 
+                        <div class="col">
+
+                        
                         @foreach ($types as $type )
                         <div class="row">
                           <span>{{$type}}</span>
@@ -78,6 +82,19 @@
                         
                 
                         @endforeach
+                        </div>
+                        
+                        <a href="{{url('/submitNurseReview/')}}/{{$nurse->nurse_id}}">
+                            <button type="button" style="background-color:rgb(229, 204, 173);
+                            border-radius:15px;padding:6px;color:rgb(65, 40, 7);
+                            font-weight:bolder;margin-right:5px;">Submit a Review</button></a>
+                      
+                        <a href="{{url('/nurseReviews/')}}/{{$nurse->nurse_id}}">
+                          <button type="button" style="border-radius: 10px;padding:6px;
+                            background-color:#012d1ddd;color:bisque;
+                            margin-right:20px;">View Reviews</button>
+                        </a>
+                      </div>
                   
                   
                 </div>

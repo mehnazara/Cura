@@ -128,17 +128,7 @@
                     @endif
 
 
-                    <hr>
-
-                    <!-- Button to View Assigned Nurse -->
-                    <div class="row" style="justify-content: center">
-                        <a href="#"
-                            class="btn" style="background-color: rgb(58, 112, 43); 
-                            color:antiquewhite;font-weight:bold;
-                            border-radius:20px;">View Service Dashboard
-                        </a>
-
-                    </div>
+                    
                     
                     
                 </div>

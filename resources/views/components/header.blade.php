@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm shadow-lg" style="background-image: linear-gradient(to right, #341f02, #0d3910);
+<nav class="navbar navbar-expand-sm shadow-lg" style="background-image: linear-gradient(to right, #1c1102, #2c230a);
 border-radius:10px;">
     <a class="navbar-brand" href="#" style="color: rgba(246, 209, 161, 0.767); font-weight:bold;" >Cura</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

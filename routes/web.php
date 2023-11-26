@@ -10,7 +10,6 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NurseReview;
-
 use App\Http\Controllers\NurseDashboard;
 use App\Http\Controllers\CalenderController;
 use App\Models\User;
@@ -18,6 +17,7 @@ use App\Models\Patient;
 //use App\Models\Admin;
 use App\Models\Nurse;
 use App\Models\Nurse_User;
+use App\Http\Controllers\CurrentServicecontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +43,14 @@ Route::group(['middleware' => ['auth:web']], function (){
     Route::post('/patientimageupdate', [PatientDashboard::class, 'patientUpdateImage'])->name('patientimagechange');
     Route::get('/patientreportupdate', [PatientDashboard::class, 'reportChange'])->name('patient.report');
     Route::post('/patientreportupdate', [PatientDashboard::class, 'patientUpdateReport'])->name('patientreportchange');
-    Route::get('/booked_nurses/{nurse_id}', [NurseController::class, 'bookNurse'])->name('bookedNurses');
+    Route::get('/booked_nurses/{nurse_id}', [NurseController::class, 'pickType'])->name('bookedNurses');
+    Route::get('/slot_nurses/{nurse_id}/{service_type}', [NurseController::class, 'pickSlot'])->name('nurse.slot');
+    Route::post('/slot_nurses/{nurse_id}/{service_type}', [NurseController::class, 'confirmBooking'])->name('nurse.confirm');
+    Route::get('/paymentStripe/{data}', [NurseController::class, 'proceedToPay']);
+    Route::post('/paymentStripe/{data}', [NurseController::class, 'makePay']);
+    Route::get('/submitNurseReview/{nurse_id}', [NurseReview::class, 'sendToReview']);
+    Route::post('/submitNurseReview/{nurse_id}', [NurseReview::class, 'submitReview']);
+    Route::get('/currentserv',[CurrentServicecontroller::class,'currentservices'])->name('currentserv');
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');
@@ -70,8 +77,13 @@ Route::group(['middleware' => ['auth:nurse']], function (){
     //Route::get('/add_event', [NurseDashboard::class, 'event'])->name('add_event');
 });
 
-//============================================================================================
-Route::get('/ratings-and-reviews', [NurseReview::class, 'index'])->name('ratings-and-reviews');
+
+
+
+
+
 Route::post('/', [SearchController::class, 'search'])->name('search');
 Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
+Route::get('/nurseReviews/{nurse_id}', [NurseReview::class, 'showReview'])->name('nurse.reviews');
+
 
