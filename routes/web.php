@@ -29,7 +29,7 @@ use App\Http\Controllers\CurrentServicecontroller;
 |
 */
 
-Route::get('/', [Home::class, 'home'])->name('home');
+Route::get('/',[Home::class,'userType']);
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginpost'])->name('login.post');
@@ -37,6 +37,7 @@ Route::get('/register', [AuthManager::class, 'register'])->name('register');
 Route::post('/register', [AuthManager::class, 'registerpost'])->name('register.post');
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth:web']], function (){
+    Route::get('/home', [Home::class, 'home'])->name('home');
     Route::get('/patientprofile', [PatientDashboard::class, 'profile'])->name('patientprofile');
     Route::post('/patientprofile', [PatientDashboard::class,'updateProfile'])->name('profile.update');
     Route::get('/patientimageupdate', [PatientDashboard::class, 'imageChange'])->name('patient.image');
