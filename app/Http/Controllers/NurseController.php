@@ -230,7 +230,7 @@ class NurseController extends Controller
                 "amount" => $amount * 100,
                 "currency" => "bdt",
                 "source" => $request->stripeToken,
-                "description" => "Payment for $nurse->name for $payment->service_type." 
+                "description" => "Payment of $nurse->name for $payment->service_type." 
         ]);
 
 
