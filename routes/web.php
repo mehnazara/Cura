@@ -8,15 +8,20 @@ use App\Http\Controllers\Password;
 use App\Http\Controllers\GoogleLogin;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\NurseController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NurseReview;
 use App\Http\Controllers\NurseDashboard;
 use App\Http\Controllers\CalenderController;
 use App\Models\User;
 use App\Models\Patient;
-//use App\Models\Admin;
+
 use App\Models\Nurse;
 use App\Models\Nurse_User;
+use App\Models\Admin;
+use App\Models\Admin_User;
+
 use App\Http\Controllers\CurrentServicecontroller;
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +91,13 @@ Route::post('/', [SearchController::class, 'search'])->name('search');
 Route::get('/search/{data}',[SearchController::class, 'searchList'])->name('search.results');
 Route::get('/nurseReviews/{nurse_id}', [NurseReview::class, 'showReview'])->name('nurse.reviews');
 
+//------------------------------------------------------------------------------------------------
 
+
+
+Route::get('/adminlogin', [AdminController::class, 'adlogin'])->name('adminlogin');
+Route::post('/adminlogin', [AdminController::class, 'adloginpost'])->name('adminlogin.post');
+Route::get('/adminlogout', [AdminController::class, 'adlogout'])->name('adminlogout');
+Route::group(['middleware' => ['auth:admin']], function (){
+    Route::get('/admindashboard', [AdminDashboard::class, 'admin_dash'])->name('admindash');
+});

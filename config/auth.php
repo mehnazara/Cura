@@ -47,6 +47,10 @@ return [
             'driver' => 'session',
             'provider' => 'nurses',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'nurses' => [
             'driver' => 'eloquent',
             'model' => App\Models\Nurse_User::class,
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin_User::class,
         ],
     ],
 

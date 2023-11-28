@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id('nurse_id');
-            $table->foreign('nurse_id')->references('nurse_id')->on('nurses')->onDelete('cascade');
-            $table->string('comments')->nullable();
-            $table->integer('rating');
+        Schema::create('admin', function (Blueprint $table) {
+            $table->id('admin_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('admin');
     }
 };
