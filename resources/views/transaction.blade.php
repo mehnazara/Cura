@@ -45,7 +45,7 @@
                 
             @if ($transaction['status']=== 'Prepaid Online')
             <span>Prepaid
-            <img style="color:whitesmoke;" src="{{URL::asset("images/prepaid.png")}}" width="50px" height="50px">
+            <img style="color:whitesmoke;margin-left:10px;" src="{{URL::asset("images/prepaid.png")}}" width="50px" height="50px">
             </span>
 
             @else
