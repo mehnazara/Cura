@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth:web']], function (){
     Route::get('/submitNurseReview/{nurse_id}', [NurseReview::class, 'sendToReview']);
     Route::post('/submitNurseReview/{nurse_id}', [NurseReview::class, 'submitReview']);
     Route::get('/currentserv',[CurrentServicecontroller::class,'currentservices'])->name('currentserv');
+    Route::get('/transactions',[PatientDashboard::class, 'transaction'])->name('transaction');
 });
 
 Route::get('/forgot-password', [Password::class, 'forgotpassword'])->name('password.forgot');

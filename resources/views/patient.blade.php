@@ -126,6 +126,15 @@
                     </div>
                     
                     @endif
+                    <hr>
+
+                    <div class="row" style="justify-content: center;">
+                        <a href="{{route('transaction')}}" class="btn"
+                            style="background-color: rgba(57, 44, 2, 0.765); 
+                            color:antiquewhite;font-weight:bold;
+                            border-radius:20px;">View Transaction History</a>
+
+                    </div>
 
 
                     

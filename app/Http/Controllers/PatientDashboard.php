@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Patient;
+use App\Models\Nurse;
+use App\Models\Inservice;
 
 class PatientDashboard extends Controller
 {
@@ -81,6 +83,28 @@ class PatientDashboard extends Controller
         $user->save();
         $request->file('report')->move('uploads/',$user->report);
         return redirect(route('patientprofile'))->with('success', 'Report Updated!');
+
+    }
+
+    function transaction(){
+        $user = Auth::user();
+        $main = Inservice::where('patient_id',$user->patient_id)->get();
+        $info = [];
+        $count = 1;
+        foreach($main as $individual){
+            $nurse = Nurse::find($individual->nurse_id);
+            $temp = ['No.' => $count,'name' => $nurse->name,'service_type' => $individual->service_type,
+            'amount' => $individual->amount, 'status' => $individual->payment_method];
+            $count++;
+            $info[] = $temp;
+
+
+        }
+        if(count($info)===0){
+            return back()->with('error','No Transaction Done yet!');
+        }
+        $data = [$user,$info];
+        return view('transaction',compact('data'));
 
     }
 
