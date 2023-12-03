@@ -34,7 +34,7 @@ use App\Http\Controllers\CurrentServicecontroller;
 |
 */
 
-Route::get('/',[Home::class,'userType']);
+Route::get('/',[Home::class,'userType'])->name('choose');
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginpost'])->name('login.post');
