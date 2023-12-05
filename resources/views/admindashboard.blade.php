@@ -26,10 +26,10 @@
                         </div>
 
                         <div class="col-6 text-center">
-                            <a href="#"
+                            <a href="{{url('/adnursecreate')}}"
                                     class="btn" style="background-color: rgb(58, 112, 43); 
                                     color:antiquewhite;font-weight:bold;
-                                    border-radius:20px;">Random Button
+                                    border-radius:20px;">Create Nurse
                             </a>
                         </div>
                     </div>
@@ -37,11 +37,11 @@
 
                     <div class="row">
                         
-                        <div class="col-6 text-center">
-                            <a href="#"
+                        <div class="col-12 text-center">
+                            <a href="{{url('/adservicecreate')}}"
                                     class="btn" style="background-color: rgb(58, 112, 43); 
                                     color:antiquewhite;font-weight:bold;
-                                    border-radius:20px;">Another button
+                                    border-radius:20px;">Create Services
                             </a>
                         </div>
                     </div>

@@ -102,4 +102,9 @@ Route::post('/adminlogin', [AdminController::class, 'adloginpost'])->name('admin
 Route::get('/adminlogout', [AdminController::class, 'adlogout'])->name('adminlogout');
 Route::group(['middleware' => ['auth:admin']], function (){
     Route::get('/admindashboard', [AdminDashboard::class, 'admin_dash'])->name('admindash');
+    Route::get('/adnursecreate', [AdminDashboard::class, 'adnursecreate'])->name('adcreate');
+    Route::post('/adnursecreate', [AdminDashboard::class, 'nursecreatepost'])->name('create.post');
+
+    Route::get('/adservicecreate', [AdminDashboard::class, 'adservicecreate'])->name('adservcreate');
+    Route::post('/adservicecreate', [AdminDashboard::class, 'servicecreatepost'])->name('createserv.post');
 });

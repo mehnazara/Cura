@@ -15,8 +15,13 @@ class Admin extends Model
         'email',
         'password',
     ];
-    // public function patients()
-    // {
-    //     return $this->belongsToMany(Patient::class, 'patient_nurse', 'nurse_id', 'patient_id');
-    // }
+    
+    public function nurses()
+    {
+        return $this->hasMany(Nurse::class);
+    }
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

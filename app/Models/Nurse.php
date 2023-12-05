@@ -19,7 +19,7 @@ class Nurse extends Model
         'gender',
         'age',
         'photo',
-        'served_patients'
+        'nursing_types',
     ];
     public function patients()
     {

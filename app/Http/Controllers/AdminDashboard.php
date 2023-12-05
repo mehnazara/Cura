@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Admin;
 use App\Models\Admin_User;
+use App\Models\Nurse;
+use App\Models\Service;
 
 
 class AdminDashboard extends Controller
@@ -15,5 +19,94 @@ class AdminDashboard extends Controller
     function admin_dash(){
         return view('/admindashboard');
         
+    }
+    public function adnursecreate(){
+        
+        return view('adnursecreate');
+    }
+
+    public function nursecreatepost(Request $request){
+        //dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email|unique:nurses',
+            'password' => 'required',
+            'qualifications' => 'required',
+            'gender' => 'required',
+            'age' => 'required',
+            'photo' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            'nursing_types' => 'required',
+            
+        ]);
+      
+        $data['name'] = $request->name;
+        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        $data['qualifications'] = $request->qualifications;
+        $data['gender'] = $request->gender;
+        $data['age'] = $request->age;
+        $data['photo'] = $request->file('photo')->getClientOriginalName();
+        $request->file('photo')->move(public_path('uploads'), $data['photo']);
+
+        
+    
+
+        $data['nursing_types'] = json_encode([$request->nursing_types]);
+        $nurse = Nurse::create($data);
+
+
+        $message = 'Nurse creation successful!';
+        $nomessage = 'Error, Problem in creating Nurse!';
+        if (!$nurse){
+            
+            return view('/adnursecreate', compact('nomessage'));
+        }
+        
+        return view('/adnursecreate', compact('message'));
+    
+    }
+
+
+
+
+    public function adservicecreate(){
+        
+        return view('adservicecreate');
+    }
+
+    public function servicecreatepost(Request $request){
+        //dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'duration' => 'required',
+            'cost' => 'required',
+            'associated_nurses' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            
+        ]);
+      
+        $data['name'] = $request->name;
+        $data['description'] = $request->description;
+        $data['duration'] = $request->duration;
+        $data['cost'] = $request->cost;
+        $data['associated_nurses'] = json_encode([$request->associated_nurses]);
+        $data['image'] = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('uploads'), $data['image']);
+        
+        $service = Service::create($data);
+
+
+        $message = 'Service creation successful!';
+        $nomessage = 'Error, Problem in creating Service!';
+        if (!$service){
+            
+            return view('/adservicecreate', compact('nomessage'));
+        }
+        
+        return view('/adservicecreate', compact('message'));
+    
     }
 }
