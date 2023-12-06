@@ -18,7 +18,11 @@ use App\Models\Service;
 
 class AdminDashboard extends Controller
 {
-    
+    function admin_dash(){
+        $nurses = Nurse::all();
+        return view('admindashboard', compact('nurses'));
+        
+    }
 
     function view_nurses(Request $request){
         if($request->search){
