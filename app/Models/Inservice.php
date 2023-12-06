@@ -20,4 +20,8 @@ class Inservice extends Model
         'status',
         'payment_method'
     ];
+
+    public function getKeyName() {
+        return 'service_id';
+    }
 }

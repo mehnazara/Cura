@@ -18,4 +18,9 @@ class Service extends Model
         'associated_nurses',
         'image'
     ];
+
+    public function nurses()
+    {
+        return $this->hasMany(Nurse::class);
+    }
 }
