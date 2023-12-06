@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use App\Models\Nurse;
 use App\Models\Admin_User;
 
 use Illuminate\Support\Facades\Session;
@@ -32,7 +33,8 @@ class AdminController extends Controller
         $credentials = $request->only('email','password');
         //dd($credentials);
         if(Auth::guard('admin')->attempt($credentials)){
-            return view('admindashboard')->with('success', 'Admin Login successful!');
+            $nurses = Nurse::all();
+            return view('admindashboard',compact('nurses'))->with('success', 'Admin Login successful!');
         }
         return redirect(route('adminlogin'))->with('error', 'Admin Login details are not valid!');
     }

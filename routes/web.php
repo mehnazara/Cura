@@ -107,4 +107,6 @@ Route::group(['middleware' => ['auth:admin']], function (){
 
     Route::get('/adservicecreate', [AdminDashboard::class, 'adservicecreate'])->name('adservcreate');
     Route::post('/adservicecreate', [AdminDashboard::class, 'servicecreatepost'])->name('createserv.post');
+    Route::get('/admindashboard/view_nurses', [AdminDashboard::class, 'view_nurses'])->name('view_nurses');
+    Route::get('/admindashboard/show_patients_and_services', [AdminDashboard::class, 'show_patients_and_services'])->name('show_patients_and_services');
 });

@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Admin;
+use App\Models\Inservice;
 use App\Models\Admin_User;
 use App\Models\Nurse;
 use App\Models\Service;
@@ -17,9 +19,39 @@ use App\Models\Service;
 class AdminDashboard extends Controller
 {
     function admin_dash(){
-        return view('/admindashboard');
+        $nurses = Nurse::all();
+        return view('admindashboard', compact('nurses'));
         
     }
+
+    function view_nurses(Request $request){
+        if($request->search){
+            $nurses = Nurse::where('name', 'like', '%' . $request->search . '%')
+                        ->orWhere('email', 'like', '%' . $request->search . '%')
+                        ->orWhere('phone', 'like', '%' . $request->search . '%')
+                        ->get();
+        } else {
+            $nurses = Nurse::all();
+        }
+
+        return view('admindashboard', compact('nurses'));
+    }
+
+    public function show_patients_and_services()
+    {
+        
+
+        $desiredNurseId = 1; 
+
+
+        $inservices = Inservice::join('nurses', 'inservices.nurse_id', '=', 'nurses.nurse_id')
+        ->where('status', "active")
+        ->select('inservices.*', 'nurses.name as nurse_name', 'nurses.nursing_types as nursing_type', 'nurses.age as age')
+        ->get();
+
+        return view('show_patients_and_services', ['services' => $inservices]);
+    }
+
     public function adnursecreate(){
         
         return view('adnursecreate');
