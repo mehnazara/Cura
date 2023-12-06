@@ -98,7 +98,14 @@ class NurseDashboard extends Controller
 
     function nurse_prev(){
         $authenticatedNurse = Auth::guard('nurse')->user();
-        $servedPatients = json_decode($authenticatedNurse->served_patients);
+        //return($authenticatedNurse);
+
+        // Use the nurse_id and servedPatientsArray in your query
+        $servedPatients = Inservice::where('nurse_id', $authenticatedNurse->nurse_id)
+            ->where('status', 'Completed')
+            ->pluck('patient_id')
+            ->toArray();
+        //$servedPatients = json_decode($authenticatedNurse->served_patients);
         //$servedPatients = Nurse::pluck('served_patients')->toArray();
         //return $servedPatients;
 
@@ -128,16 +135,22 @@ class NurseDashboard extends Controller
 
     function nurse_now(){
         $authenticatedNurse = Auth::guard('nurse')->user();
-        $currentPatients = json_decode($authenticatedNurse->current_patient);
+        //return($authenticatedNurse);
+
+        // Use the nurse_id and servedPatientsArray in your query
+        $currentPatients = Inservice::where('nurse_id', $authenticatedNurse->nurse_id)
+            ->where('status', 'Active')
+            ->pluck('patient_id')
+            ->toArray();
         
-        $list =[];
+        $list1 =[];
         foreach($currentPatients as $now){
             $data = Patient::find($now);
             //return $data;
             $list1[]=$data;
     
         }
-        //return $list;
+        //return $list1;
         return view('/nurse_now_client',compact('list1'));
         
     }
