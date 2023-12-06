@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth:web']], function (){
     Route::get('/submitNurseReview/{nurse_id}', [NurseReview::class, 'sendToReview']);
     Route::post('/submitNurseReview/{nurse_id}', [NurseReview::class, 'submitReview']);
     Route::get('/currentserv',[CurrentServicecontroller::class,'currentservices'])->name('currentserv');
+    Route::get('/servicedone/{id}',[CurrentServicecontroller::class,'completeService'])->name('service.complete');
     Route::get('/transactions',[PatientDashboard::class, 'transaction'])->name('transaction');
 });
 
@@ -102,4 +103,11 @@ Route::post('/adminlogin', [AdminController::class, 'adloginpost'])->name('admin
 Route::get('/adminlogout', [AdminController::class, 'adlogout'])->name('adminlogout');
 Route::group(['middleware' => ['auth:admin']], function (){
     Route::get('/admindashboard', [AdminDashboard::class, 'admin_dash'])->name('admindash');
+    Route::get('/adnursecreate', [AdminDashboard::class, 'adnursecreate'])->name('adcreate');
+    Route::post('/adnursecreate', [AdminDashboard::class, 'nursecreatepost'])->name('create.post');
+
+    Route::get('/adservicecreate', [AdminDashboard::class, 'adservicecreate'])->name('adservcreate');
+    Route::post('/adservicecreate', [AdminDashboard::class, 'servicecreatepost'])->name('createserv.post');
+    Route::get('/admindashboard/view_nurses', [AdminDashboard::class, 'view_nurses'])->name('view_nurses');
+    Route::get('/admindashboard/show_patients_and_services', [AdminDashboard::class, 'show_patients_and_services'])->name('show_patients_and_services');
 });

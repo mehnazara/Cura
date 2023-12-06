@@ -22,4 +22,7 @@ class Inservice extends Model
     ];
 
     
+    public function getKeyName() {
+        return 'service_id';
+    }
 }

@@ -6,50 +6,50 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+
 use App\Models\Service;
 use App\Models\Nurse;
 use App\Models\Patient;
-
-
+use App\Models\Inservice;
+use Carbon\Carbon;
 
 class CurrentServicecontroller extends Controller
 {
     function currentservices(){
         $patient = Auth::user();
 
-        $data = json_decode($patient->nurses);
-        //return $data;
-        $nurse_details = [];
-        $curr_service = [];
-        $detail = [];
-        foreach($data as $nurse_id){
-            $nurse = Nurse::find($nurse_id);
-
-            $assoc_service = json_decode($nurse->nursing_types);
-            $curr_service[] = $assoc_service;
-
-            $nurse_details[] = $nurse;
+        $services = Inservice::where('status', 'Active')->where('patient_id', $patient->patient_id)->get();
+        $nd = [];
+        $sd = [];
+        foreach ($services as $service) {
+            $serviceStartDate = Carbon::parse($service->service_start);
+            $serviceEndDate = Carbon::parse($service->service_end);
 
 
+            $numberOfDays = $serviceEndDate->diffInDays($serviceStartDate);
+
+            $serviceDetails = Service::where('name', $service->service_type)->first();
+            $sd[] = ['services' => $serviceDetails,'start' => $serviceStartDate,'end' => $serviceEndDate,'numberOfDays' => $numberOfDays, 'nurse_id' => $service->nurse_id,
+            'amount' => $service->amount, 'payment' => $service->payment_method,'service_id' => $service->service_id];
+            //$sd[] = $numberOfDays;
+            $nurseDetails = Nurse::find($service->nurse_id);
+            $nd[] = $nurseDetails;
+           
         }
-        foreach($curr_service as $serv){
-            foreach($serv as $nursetype){
-                $serv_detail = Service::where('name', 'like', '%' . $nursetype . '%')->get();
-                $detail[] = $serv_detail; 
-            }
-
-
-
-        }
-        //return $detail;
-
-
-        //return $nurse_details;
-        return view('currentserv',compact('nurse_details','detail'));
+       
+        //return($services);
+        return view('currentserv',compact('nd','sd','services'));
 
 
 
 
+    }
+
+    public function completeService($id){
+        $data = Inservice::find($id);
+        $data->status = 'Completed';
+        $data->save();
+        return redirect()->back()->with('success','Service Completion!');
     }
 
 

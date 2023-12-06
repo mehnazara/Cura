@@ -19,10 +19,19 @@ class Nurse extends Model
         'gender',
         'age',
         'photo',
-        'served_patients'
+        'nursing_types',
     ];
     public function patients()
     {
         return $this->belongsToMany(Patient::class, 'patient_nurse', 'nurse_id', 'patient_id');
+    }
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'nurse_service', 'nurse_id', 'service_id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 }
