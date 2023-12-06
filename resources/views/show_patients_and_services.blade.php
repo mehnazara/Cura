@@ -38,7 +38,7 @@
                     </table> --}}
                     <div class="row">
                         <h2 style="margin-left: 40px;">Services</h2>
-                        <a href="#" class="btn"
+                        <a href="{{ route('createserv.post') }}" class="btn"
                         style="background-color: rgb(58, 112, 43); color: antiquewhite; font-weight: bold; border-radius: 20px;
                         margin-left:300px;">Add New Service
                         </a>

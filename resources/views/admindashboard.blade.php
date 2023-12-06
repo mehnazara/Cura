@@ -39,7 +39,7 @@
                         <form method="get" action="{{ route('view_nurses') }}">
                             <div class="row" style="margin-bottom:10px;">
                                 <div class="col-6 text-center" >
-                                    <a href="#" class="btn"
+                                    <a href="{{ route('create.post') }}" class="btn"
                                         style="background-color: rgb(24, 54, 16); color: antiquewhite; font-weight: bold; border-radius: 20px;">Add Nurse
                                         </a>
                                 </div>
