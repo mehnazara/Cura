@@ -20,4 +20,6 @@ class Inservice extends Model
         'status',
         'payment_method'
     ];
+
+    
 }

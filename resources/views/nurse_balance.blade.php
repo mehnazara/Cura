@@ -1,22 +1,39 @@
 @extends('layout')
 
-@section('title','Account Balance')
+@section('title', 'Account Balance') 
 @section('content')
 <div class="container">
-    
-    <div class="row justify-content-center" style="margin: 10px;">
-        <div class="col-12">
-            <div class="card" style="background-color:#355e354f;
-            color:blanchedalmond; font-weight:bold;">
-                <div class="card-header" style="font-size:25px; font-style:italic">Current Account Balance</div>
-                    <h3>Taka 2700 in from Patient 1</h3>
-                    <h3>Total Taka 5000 in account</h3>
-                <div class="card-body">
+    <div class="row" style="background: rgba(0, 255, 0, 0.1);margin-top: 30px;">
+        <h2 class="mt-4 mb-4" style="color: white; ">Nurse Balance</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
                     
-                    
-                </div>
-            </div>
-        </div>
+                        <th scope="col" style="color: white; background-color: #4c6404f1;">Patient Name</th>
+                        <th scope="col" style="color: white; background-color: #4c6404f1;">Amount</th>
+                        <th scope="col" style="color: white; background-color: #4c6404f1;">Status</th>
+                        <th scope="col" style="color: white; background-color: #4c6404f1;">Payment Method</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($inserviceList as $balanc)
+
+                        <tr>
+                        <td style="color: white;">
+                            @php
+                                $patient = \App\Models\Patient::find($balanc['patient_id']);
+                                echo ($patient) ? $patient->name : 'Patient Not Found';
+                            @endphp
+                        </td>
+                        <td style="color: white;">{{ $balanc['amount'] }}</td>
+                        <td style="color: white;">{{ $balanc['status'] }}</td>
+                        <td style="color: white;">{{ $balanc['payment_method'] }}</td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
     </div>
 </div>
 @endsection

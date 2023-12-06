@@ -35,7 +35,7 @@
                         @else
                         <div class="col-6 text-center">
                             <div class="row" style="justify-content: center">
-                                <img src="{{URL::asset("uploads/".auth()->guard('web')->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
+                                <img src="{{URL::asset('uploads/'.auth()->guard('web')->user()->profilePicture)}}" style="border-radius:10px;" width="200px">
 
                             </div>
                             <div class="row mt-2" style="justify-content: center;">
