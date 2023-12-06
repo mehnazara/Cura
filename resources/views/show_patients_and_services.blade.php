@@ -36,9 +36,16 @@
                             @endforeach
                         </tbody>
                     </table> --}}
+                    <div class="row">
+                        <h2 style="margin-left: 40px;">Services</h2>
+                        <a href="#" class="btn"
+                        style="background-color: rgb(58, 112, 43); color: antiquewhite; font-weight: bold; border-radius: 20px;
+                        margin-left:300px;">Add New Service
+                        </a>
 
-                    <h2>Services</h2>
-                    <table class="table">
+                    </div>
+                    
+                    <table class="table" style="margin:20px;">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
