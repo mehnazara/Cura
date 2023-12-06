@@ -53,7 +53,7 @@ class AdminDashboard extends Controller
         
     
 
-        $data['nursing_types'] = json_encode([$request->nursing_types]);
+        $data['nursing_types'] = json_encode(explode(', ', $request->nursing_types));
         $nurse = Nurse::create($data);
 
 
@@ -64,6 +64,19 @@ class AdminDashboard extends Controller
             return view('/adnursecreate', compact('nomessage'));
         }
         
+        $services = Service::all();
+
+        foreach ($services as $service) {
+        
+            if (in_array($service->name, json_decode($nurse->nursing_types))) {
+                $associatedNurses = json_decode($service->associated_nurses, true) ?? [];
+                $associatedNurses[] = $nurse->name;
+                $service->update(['associated_nurses' => json_encode($associatedNurses)]);
+            }
+        }
+        
+
+        $message = 'Nurse creation successful!';
         return view('/adnursecreate', compact('message'));
     
     }
@@ -92,7 +105,7 @@ class AdminDashboard extends Controller
         $data['description'] = $request->description;
         $data['duration'] = $request->duration;
         $data['cost'] = $request->cost;
-        $data['associated_nurses'] = json_encode([$request->associated_nurses]);
+        $data['associated_nurses'] = json_encode(explode(', ', $request->associated_nurses));                  
         $data['image'] = $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads'), $data['image']);
         
@@ -105,7 +118,16 @@ class AdminDashboard extends Controller
             
             return view('/adservicecreate', compact('nomessage'));
         }
+        $nurses = Nurse::all();
+
+        foreach ($nurses as $nurse) {
         
+            if (in_array($nurse->name, json_decode($service->associated_nurses))) {
+                $associatedService = json_decode($nurse->nursing_types, true) ?? [];
+                $associatedService[] = $service->name;
+                $nurse->update(['nursing_types' => json_encode($associatedService)]);
+            }
+        }
         return view('/adservicecreate', compact('message'));
     
     }
