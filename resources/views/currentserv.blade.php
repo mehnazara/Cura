@@ -20,12 +20,26 @@
                                 <p class="card-text"><strong>Service started:</strong> {{ $service['start']->toDateString() }} </p>
                                 <p class="card-text"><strong>Service ends:</strong> {{ $service['end']->toDateString() }} </p>
                                 <p class="card-text"><strong>Days Left:</strong> {{ $service['numberOfDays'] }} </p>
+                        
                                 
-                                <div class="btn-group" role="group">
-                                    <button style="border-radius: 10px; padding:6px; background-color:#012d1ddd; color:bisque;" type="button" data-toggle="modal" data-target="#modal-{{$service['nurse_id']}}">
-                                        Nurse Details
-                                    </button>
+                                @if($service['payment']==='Cash After Service')
+                                <p class="card-text"><strong>Pay (Cash After Service):</strong> {{ $service['amount'] }} BDT  </p>
+                                @else
+                                <p class="card-text"><strong>Prepaid Amount:</strong> {{ $service['amount'] }} BDT </p>
+                                @endif
+                                <div class="row">
+                                    <div class="btn-group" role="group">
+                                        <button style="border-radius: 10px; padding:6px; background-color:#012d1ddd; color:bisque;margin-left:10px;" type="button" data-toggle="modal" data-target="#modal-{{$service['nurse_id']}}">
+                                            Nurse Details
+                                        </button>
+                                    </div>
+                                    <a href="{{url('/servicedone/')}}/{{$service['service_id']}}">
+                                        <button type="button" style="border-radius: 10px;padding:6px;
+                                          background-color:#2d2001dd;color:bisque;margin-left:30px;">Service Complete</button>
+                                    </a>
+
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

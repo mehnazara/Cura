@@ -25,11 +25,12 @@ class CurrentServicecontroller extends Controller
             $serviceStartDate = Carbon::parse($service->service_start);
             $serviceEndDate = Carbon::parse($service->service_end);
 
+
             $numberOfDays = $serviceEndDate->diffInDays($serviceStartDate);
 
             $serviceDetails = Service::where('name', $service->service_type)->first();
             $sd[] = ['services' => $serviceDetails,'start' => $serviceStartDate,'end' => $serviceEndDate,'numberOfDays' => $numberOfDays, 'nurse_id' => $service->nurse_id,
-            ];
+            'amount' => $service->amount, 'payment' => $service->payment_method,'service_id' => $service->service_id];
             //$sd[] = $numberOfDays;
             $nurseDetails = Nurse::find($service->nurse_id);
             $nd[] = $nurseDetails;
@@ -42,6 +43,13 @@ class CurrentServicecontroller extends Controller
 
 
 
+    }
+
+    public function completeService($id){
+        $data = Inservice::find($id);
+        $data->status = 'Completed';
+        $data->save();
+        return redirect()->back()->with('success','Service Completion!');
     }
 
 

@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth:web']], function (){
     Route::get('/submitNurseReview/{nurse_id}', [NurseReview::class, 'sendToReview']);
     Route::post('/submitNurseReview/{nurse_id}', [NurseReview::class, 'submitReview']);
     Route::get('/currentserv',[CurrentServicecontroller::class,'currentservices'])->name('currentserv');
+    Route::get('/servicedone/{id}',[CurrentServicecontroller::class,'completeService'])->name('service.complete');
     Route::get('/transactions',[PatientDashboard::class, 'transaction'])->name('transaction');
 });
 
