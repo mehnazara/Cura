@@ -35,12 +35,12 @@
 
                     <hr>
                     <h5> All Nurses </h5>
-                    <div class="container">
+                    <div class="container" style="margin-top:10px;">
                         <form method="get" action="{{ route('view_nurses') }}">
-                            <div class="row">
-                                <div class="col-6 text-center">
+                            <div class="row" style="margin-bottom:10px;">
+                                <div class="col-6 text-center" >
                                     <a href="#" class="btn"
-                                        style="background-color: rgb(58, 112, 43); color: antiquewhite; font-weight: bold; border-radius: 20px;">Add Nurse
+                                        style="background-color: rgb(24, 54, 16); color: antiquewhite; font-weight: bold; border-radius: 20px;">Add Nurse
                                         </a>
                                 </div>
 
